@@ -104,10 +104,10 @@ class Section:
                 children.append(section)
                 map.sections.append(section)
                 # draw debug line
-                var line = Line2D.new()
-                line.add_point(map.map_to_local(bounds.position))
-                line.add_point(map.map_to_local(pattern_rect.position))
-                map.add_child(line)
+                #var line = Line2D.new()
+                #line.add_point(map.map_to_local(bounds.position))
+                #line.add_point(map.map_to_local(pattern_rect.position))
+                #map.add_child(line)
                 #print("Adding a child succedded!")
 
 func _ready():
