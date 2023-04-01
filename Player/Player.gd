@@ -22,8 +22,6 @@ func _physics_process(delta: float):
 	velocity = lerp(velocity, Vector2(), friction)
 	if velocity.length() < 1:
 		velocity = Vector2()
-	
-	print(velocity.length(), " ", max_speed)
 
 func _input(event: InputEvent):
 	pass
