@@ -1,7 +1,7 @@
 extends TileMap
 class_name MapGenerator
 
-var world_gen_passes = 3
+var world_gen_passes = 10
 
 var sections: Array[Section] = []
 

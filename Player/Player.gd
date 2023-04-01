@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
-@export var acceleration = 2750
-@export var friction = 0.13
+@export var acceleration = 650
+@export var friction = 0.03
 @export var max_speed = 6000
 
 func _physics_process(delta: float):
@@ -19,7 +19,7 @@ func _physics_process(delta: float):
         velocity = velocity.normalized() * max_speed
     move_and_slide()
     
-    velocity = lerp(velocity, Vector2(), friction)
+    velocity -= velocity * friction * delta
     if velocity.length() < 1:
         velocity = Vector2()
 
