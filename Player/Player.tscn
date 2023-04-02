@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://cjp7swrwcf7ss"]
+[gd_scene load_steps=6 format=3 uid="uid://cjp7swrwcf7ss"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_mwgp5"]
-[ext_resource type="Texture2D" uid="uid://c3pqodo3hodbq" path="res://icon.svg" id="2_0lyr7"]
 [ext_resource type="PackedScene" uid="uid://pr5gn6uofr18" path="res://PoisonDrop/poison_drop.tscn" id="2_eyn1k"]
 [ext_resource type="Script" path="res://Player/HealthBar.gd" id="3_katjt"]
 
@@ -22,11 +21,6 @@ layer = 10
 [node name="HealthBar" type="Node2D" parent="CanvasLayer"]
 script = ExtResource("3_katjt")
 foreground_color = Color(1, 1, 1, 1)
-
-[node name="Icon" type="Sprite2D" parent="."]
-visible = false
-scale = Vector2(0.647, 0.65)
-texture = ExtResource("2_0lyr7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_4ihue")
