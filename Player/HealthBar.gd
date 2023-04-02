@@ -9,13 +9,6 @@ var _background_color := Color()
     set(v): 
         _background_color = v
         queue_redraw()
-            
-var _foreground_color := Color()
-@export var foreground_color: Color:
-    get: return _foreground_color
-    set(v): 
-        _foreground_color = v
-        queue_redraw()
 
 var _health := GlobalConstants.max_health
 
@@ -26,5 +19,8 @@ var health: float:
         queue_redraw()
 
 func _draw():
+    var ratio := health / GlobalConstants.max_health
+    var foreground_color = lerp(Color(1,0.2,0.2), Color(0.2,1,0.2), ratio)
+    print(foreground_color)
     draw_line(Vector2(), Vector2(width, 0), background_color, thickness)
     draw_line(Vector2(), Vector2(width * (health / GlobalConstants.max_health), 0), foreground_color, thickness)
