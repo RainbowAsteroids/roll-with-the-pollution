@@ -2,6 +2,7 @@ extends CharacterBody2D
 class_name Player
 
 signal dead
+signal win
 
 @export var acceleration := 650.0
 @export var friction := 0.03
@@ -23,6 +24,7 @@ var _health := GlobalConstants.max_health
 
 var can_heal := false
 var can_hurt := false
+var collectables_collected := 0
 
 func _draw():
     draw_circle(Vector2(), 36, Color.BLUE_VIOLET)
@@ -81,3 +83,8 @@ func _on_heal_coolup_timeout():
 
 func _on_damage_coolup_timeout():
     can_hurt = true
+
+func collected_collectable():
+    collectables_collected += 1
+    if collectables_collected == GlobalConstants.max_collectables:
+        win.emit()

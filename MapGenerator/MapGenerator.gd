@@ -1,9 +1,11 @@
 extends TileMap
 class_name MapGenerator
 
-var world_gen_passes = 10
+const world_gen_passes = 10
 
 var sections: Array[Section] = []
+
+@export var collectable: PackedScene
 
 func point_in_any_section(point: Vector2i) -> bool:
     for section in sections:
@@ -124,10 +126,29 @@ func _ready():
         for index in range(sections_length):
             sections[index].make_children(self, sections)
     
+    # collect all of the collectable spawn points
+    var cells: Array[Vector2i] = get_used_cells(0)
+    var collectable_spawners: Array[Vector2i] = cells.filter(
+        func(cell_pos: Vector2i) -> bool: 
+            var cell_id = get_cell_source_id(0, cell_pos)
+            return cell_id == 1
+    )
+    for _i in range(GlobalConstants.max_collectables):
+        var index := randi_range(0, collectable_spawners.size())
+        var cell_pos := collectable_spawners[index]
+        erase_cell(0, cell_pos)
+        var pos = map_to_local(cell_pos)
+        
+        var c = collectable.instantiate()
+        c.position = position + pos
+        get_parent().add_child.call_deferred(c)
+        
+        collectable_spawners.pop_at(index)
+    
+    # cleanup the rest of the cell tiles
+    for cell_pos in collectable_spawners:
+        erase_cell(0, cell_pos)
 
-func _process(_delta: float):
-    if Input.is_action_just_pressed("click"):
-        print(local_to_map(get_local_mouse_position()))
 
 func get_random_section() -> TileMapPattern:
     #return get_random_section_of_size(get_random_size())

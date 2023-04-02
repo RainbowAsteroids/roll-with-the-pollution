@@ -6,9 +6,6 @@ func _ready():
     var center := section.bounds.position + (section.bounds.size / 2)
     var pos := map.map_to_local(center)
     $Player.position = pos
-    print(section.bounds.position)
-    print(center)
-    print(pos)
 
 func add_poison_drop(pd: Node):
     if pd:
