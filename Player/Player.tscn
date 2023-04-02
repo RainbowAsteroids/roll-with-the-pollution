@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cjp7swrwcf7ss"]
+[gd_scene load_steps=7 format=3 uid="uid://cjp7swrwcf7ss"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_mwgp5"]
 [ext_resource type="Texture2D" uid="uid://c3pqodo3hodbq" path="res://icon.svg" id="2_0lyr7"]
@@ -6,6 +6,9 @@
 [ext_resource type="Script" path="res://Player/HealthBar.gd" id="3_katjt"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4ihue"]
+radius = 36.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_f0vep"]
 radius = 36.0
 
 [node name="Player" type="CharacterBody2D"]
@@ -34,4 +37,18 @@ drag_vertical_enabled = true
 [node name="PoisonTimer" type="Timer" parent="."]
 autostart = true
 
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_f0vep")
+
+[node name="HealCoolup" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="DamageCoolup" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="timeout" from="PoisonTimer" to="." method="_on_poison_timer_timeout"]
+[connection signal="timeout" from="HealCoolup" to="." method="_on_heal_coolup_timeout"]
+[connection signal="timeout" from="DamageCoolup" to="." method="_on_damage_coolup_timeout"]
