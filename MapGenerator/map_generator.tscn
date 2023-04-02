@@ -29,7 +29,6 @@ pattern_1 = SubResource("TileMapPattern_pfwdv")
 pattern_2 = SubResource("TileMapPattern_gelyc")
 
 [node name="PatternContainer" type="TileMap"]
-position = Vector2(-3, -462)
 tile_set = SubResource("TileSet_1inuj")
 cell_quadrant_size = 48
 format = 2
