@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cjp7swrwcf7ss"]
+[gd_scene load_steps=6 format=3 uid="uid://cjp7swrwcf7ss"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_mwgp5"]
 [ext_resource type="Texture2D" uid="uid://c3pqodo3hodbq" path="res://icon.svg" id="2_0lyr7"]
+[ext_resource type="PackedScene" uid="uid://pr5gn6uofr18" path="res://PoisonDrop/poison_drop.tscn" id="2_eyn1k"]
 [ext_resource type="Script" path="res://Player/HealthBar.gd" id="3_katjt"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4ihue"]
@@ -9,6 +10,7 @@ radius = 36.0
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_mwgp5")
+poison_drop = ExtResource("2_eyn1k")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 10
@@ -28,3 +30,8 @@ shape = SubResource("CircleShape2D_4ihue")
 [node name="Camera2D" type="Camera2D" parent="."]
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
+
+[node name="PoisonTimer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="PoisonTimer" to="." method="_on_poison_timer_timeout"]
