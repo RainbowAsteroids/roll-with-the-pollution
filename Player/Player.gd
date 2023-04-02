@@ -3,6 +3,7 @@ class_name Player
 
 signal dead
 signal win
+signal collectable_collected(collectable: Collectable)
 
 @export var acceleration := 650.0
 @export var friction := 0.03
@@ -84,7 +85,8 @@ func _on_heal_coolup_timeout():
 func _on_damage_coolup_timeout():
     can_hurt = true
 
-func collected_collectable():
+func collected_collectable(collectable: Collectable):
     collectables_collected += 1
+    collectable_collected.emit(collectable)
     if collectables_collected == GlobalConstants.max_collectables:
         win.emit()

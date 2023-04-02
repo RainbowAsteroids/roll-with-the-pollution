@@ -1,6 +1,8 @@
 extends TileMap
 class_name MapGenerator
 
+signal added_collectable(collectable: Collectable)
+
 const world_gen_passes = 10
 
 var sections: Array[Section] = []
@@ -134,14 +136,15 @@ func _ready():
             return cell_id == 1
     )
     for _i in range(GlobalConstants.max_collectables):
-        var index := randi_range(0, collectable_spawners.size())
+        var index := randi_range(0, collectable_spawners.size() - 1)
         var cell_pos := collectable_spawners[index]
         erase_cell(0, cell_pos)
         var pos = map_to_local(cell_pos)
         
-        var c = collectable.instantiate()
+        var c: Collectable = collectable.instantiate()
         c.position = position + pos
         get_parent().add_child.call_deferred(c)
+        added_collectable.emit(c)
         
         collectable_spawners.pop_at(index)
     
@@ -149,82 +152,6 @@ func _ready():
     for cell_pos in collectable_spawners:
         erase_cell(0, cell_pos)
 
-
 func get_random_section() -> TileMapPattern:
     #return get_random_section_of_size(get_random_size())
     return tile_set.get_pattern(randi_range(0, tile_set.get_patterns_count() - 1))
-
-#
-#enum Size {
-#    x24,
-#    x12,
-#    x18x12,
-#    x24x18
-#}
-#
-#var patterns = {}   
-#
-#func y_offset_of_size(size: Size) -> int:
-#    match size:
-#        Size.x24: return 0
-#        Size.x12: return 24
-#        Size.x18x12: return 24 + 12
-#        Size.x24x18: return 24 + 12 + 12
-#    push_error("Failed to match %s in y_offset_of_size" % size)
-#    return 0
-#
-#func width_of_size(size: Size) -> int:
-#    match size:
-#        Size.x24: return 24
-#        Size.x12: return 12
-#        Size.x18x12: return 18
-#        Size.x24x18: return 24
-#    push_error("Failed to match %s in width_of_size" % size)
-#    return 0
-#
-#func height_of_size(size: Size) -> int:
-#    match size:
-#        Size.x24: return 24
-#        Size.x12: return 12
-#        Size.x18x12: return 12
-#        Size.x24x18: return 18
-#    push_error("Failed to match %s in height_of_size" % size)
-#    return 0
-#
-#func scoop_section(size: Size, index: int) -> TileMapPattern:
-#    var width := width_of_size(size)
-#    var height := height_of_size(size)
-#    var x := width * index
-#    var y := y_offset_of_size(size)
-#
-#    return get_pattern(0, [Vector2i(x, y), Vector2i(width, height)])
-#
-#func number_of_sections(size: Size) -> int:
-#    var y := y_offset_of_size(size)
-#    var width := width_of_size(size)
-#
-#    var result := 0
-#    while get_cell_source_id(0, Vector2i(width * result, y)) != -1:
-#        result += 1
-#
-#    return result
-#
-#func _ready():
-#    # create patterns
-#    for size_string in Size:
-#        var size = Size[size_string]
-#        patterns[size] = []
-#        for index in range(number_of_sections(Size[size_string])):
-#            patterns[size].append(scoop_section(size, index))
-#
-#    # wipe away all of the cells
-#    clear()
-#
-#func get_random_size() -> Size:
-#    var sizes: Array[Size] = []
-#    for size_string in Size:
-#        sizes.append(Size[size_string])
-#    return sizes.pick_random()
-#
-#func get_random_section_of_size(size: Size) -> TileMapPattern:
-#    return patterns[size].pick_random()

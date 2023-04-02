@@ -1,11 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://bfixe8d681m1r"]
+[gd_scene load_steps=5 format=3 uid="uid://bfixe8d681m1r"]
 
 [ext_resource type="Script" path="res://test_scene.gd" id="1_1bod5"]
 [ext_resource type="PackedScene" uid="uid://cjp7swrwcf7ss" path="res://Player/Player.tscn" id="1_2d0a8"]
 [ext_resource type="PackedScene" uid="uid://b3brwk4yt28ba" path="res://MapGenerator/map_generator.tscn" id="2_pmmsu"]
+[ext_resource type="PackedScene" uid="uid://cc02dggbcjqq6" path="res://Arrow.tscn" id="2_se8lt"]
 
 [node name="test-scene" type="Node2D"]
 script = ExtResource("1_1bod5")
+arrow_scene = ExtResource("2_se8lt")
 
 [node name="Player" parent="." instance=ExtResource("1_2d0a8")]
 position = Vector2(263, 180)
@@ -16,3 +18,6 @@ position = Vector2(263, 180)
 
 [node name="CanvasGroup" type="CanvasGroup" parent="."]
 self_modulate = Color(1, 1, 1, 0.352941)
+
+[connection signal="collectable_collected" from="Player" to="." method="_on_player_collectable_collected"]
+[connection signal="added_collectable" from="PatternContainer" to="." method="_on_pattern_container_added_collectable"]
