@@ -12,6 +12,7 @@ radius = 36.0
 radius = 36.0
 
 [node name="Player" type="CharacterBody2D"]
+z_index = 7
 script = ExtResource("1_mwgp5")
 poison_drop = ExtResource("2_eyn1k")
 
