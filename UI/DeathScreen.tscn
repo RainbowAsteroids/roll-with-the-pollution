@@ -1,0 +1,41 @@
+[gd_scene load_steps=2 format=3 uid="uid://b85aixk5t7p87"]
+
+[ext_resource type="Script" path="res://UI/DeathScreen.gd" id="1_ydymt"]
+
+[node name="DeathScreen" type="MarginContainer"]
+offset_right = 1920.0
+offset_bottom = 1080.0
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 50
+script = ExtResource("1_ydymt")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 175
+text = "You died!"
+horizontal_alignment = 1
+
+[node name="Expansion" type="Control" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PlayAgain" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 41
+text = " Play again "
+
+[node name="MainMenu" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 41
+text = " Main Menu "
+
+[connection signal="pressed" from="VBoxContainer/PlayAgain" to="." method="_on_play_again_pressed"]
+[connection signal="pressed" from="VBoxContainer/MainMenu" to="." method="_on_main_menu_pressed"]

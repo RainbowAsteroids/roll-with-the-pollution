@@ -20,7 +20,7 @@ var _health := GlobalConstants.max_health
         v = clamp(v,0,GlobalConstants.max_health)
         _health = v
         $CanvasLayer/HealthBar.health = v
-        if v < 0: 
+        if v == 0: 
             dead.emit()
 
 var can_heal := false

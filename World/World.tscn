@@ -20,4 +20,6 @@ position = Vector2(263, 180)
 self_modulate = Color(1, 1, 1, 0.352941)
 
 [connection signal="collectable_collected" from="Player" to="." method="_on_player_collectable_collected"]
+[connection signal="dead" from="Player" to="." method="_on_player_dead"]
+[connection signal="win" from="Player" to="." method="_on_player_win"]
 [connection signal="added_collectable" from="PatternContainer" to="." method="_on_pattern_container_added_collectable"]

@@ -28,13 +28,10 @@ func _physics_process(delta: float):
     for pair in collectable_pairs:
         var collectable = pair.collectable
         var arrow = pair.arrow
-        if collectable.position.distance_to($Player.position) < 100:
-            arrow.visible = false
-        else:
-            var c_pos = collectable.global_position
-            arrow.position = $Player.position + ($Player.velocity * delta)
-            arrow.look_at(c_pos)
-            arrow.visible = true
+        var c_pos = collectable.global_position
+        arrow.position = $Player.position + ($Player.velocity * delta)
+        arrow.look_at(c_pos)
+        arrow.visible = true
 
 func _on_pattern_container_added_collectable(collectable: Collectable):
     var arrow = arrow_scene.instantiate()
@@ -48,3 +45,11 @@ func _on_player_collectable_collected(collectable):
     var index = collectable_pairs.find(pairing)
     collectable_pairs.pop_at(index)
     pairing.collectable.queue_free()
+    pairing.arrow.queue_free()
+    
+
+func _on_player_dead():
+    get_tree().change_scene_to_file("res://UI/DeathScreen.tscn")
+
+func _on_player_win():
+    get_tree().change_scene_to_file("res://UI/VictoryScreen.tscn")
