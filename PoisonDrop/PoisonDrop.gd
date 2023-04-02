@@ -15,7 +15,7 @@ var radius: float:
         
 
 func _draw():
-    draw_circle(Vector2(), radius, Color(0,0,0))
+    draw_circle(Vector2(), radius, Color(.4,.4,.4))
 
 func _process(delta: float):
     if radius < max_radius:
