@@ -5,6 +5,16 @@ extends CharacterBody2D
 @export var max_speed := 6000.0
 @export var braking_force := 2.5
 
+var _health := GlobalConstants.max_health
+@export var health: float:
+    get: return _health
+    set(v):
+        _health = v
+        $CanvasLayer/HealthBar.health = v
+
+func _draw():
+    draw_circle(Vector2(), 36, Color.BLUE_VIOLET)
+
 func _physics_process(delta: float):
     var motion := Vector2()
     if Input.is_action_pressed("move_left"):
@@ -30,6 +40,3 @@ func _physics_process(delta: float):
     if velocity.length() < 1:
         velocity = Vector2()
 
-func _input(event: InputEvent):
-    pass
-        
