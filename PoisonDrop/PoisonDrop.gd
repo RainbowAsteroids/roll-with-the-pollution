@@ -22,6 +22,7 @@ func _ready():
     var sprite = Sprite2D.new()
     sprite.texture = images.pick_random()
     sprite.z_index = 5
+    sprite.rotation_degrees = randf() * 360 
     add_child(sprite)
 
 func _draw():

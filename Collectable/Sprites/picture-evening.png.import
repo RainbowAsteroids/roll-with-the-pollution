@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bonstuunuh7fb"
-path="res://.godot/imported/collectable.png-1738ed55416a3856e542c53352b8a652.ctex"
+uid="uid://chcsyc5pew7hh"
+path="res://.godot/imported/picture-evening.png-06eb7aa322722aae1c35bb821bfe40ff.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Collectable/collectable.png"
-dest_files=["res://.godot/imported/collectable.png-1738ed55416a3856e542c53352b8a652.ctex"]
+source_file="res://Collectable/Sprites/picture-evening.png"
+dest_files=["res://.godot/imported/picture-evening.png-06eb7aa322722aae1c35bb821bfe40ff.ctex"]
 
 [params]
 
