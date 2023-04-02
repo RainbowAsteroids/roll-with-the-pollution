@@ -4,6 +4,7 @@ extends Node2D
 
 var collectable_pairs: Array[CollectablePairing] = []
 @onready var camera: Camera2D = $Player/Camera2D
+@onready var start_time := Time.get_ticks_msec() as float
 
 class CollectablePairing:
     var arrow: Sprite2D
@@ -52,4 +53,6 @@ func _on_player_dead():
     get_tree().change_scene_to_file("res://UI/DeathScreen.tscn")
 
 func _on_player_win():
+    var end_time = Time.get_ticks_msec() as float
+    RunTimeManager.last_time = (end_time - start_time) / 1000
     get_tree().change_scene_to_file("res://UI/VictoryScreen.tscn")

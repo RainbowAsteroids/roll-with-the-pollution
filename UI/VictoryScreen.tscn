@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://qj5k2sfxc0kg"]
+[gd_scene load_steps=4 format=3 uid="uid://qj5k2sfxc0kg"]
 
 [ext_resource type="Script" path="res://UI/VictoryScreen.gd" id="1_hwoff"]
+[ext_resource type="Script" path="res://UI/LastTimeLabel.gd" id="2_v6pbj"]
+[ext_resource type="Script" path="res://UI/BestTimeLabel.gd" id="3_58jem"]
 
 [node name="VictoryScreen" type="MarginContainer"]
 offset_right = 1920.0
@@ -25,19 +27,19 @@ horizontal_alignment = 1
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Label2" type="Label" parent="VBoxContainer"]
-visible = false
+[node name="LastTimeLabel" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "Your time: 00:00:00"
 horizontal_alignment = 1
+script = ExtResource("2_v6pbj")
 
-[node name="Label3" type="Label" parent="VBoxContainer"]
-visible = false
+[node name="BestTimeLabel" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "Best time: 00:00:00"
 horizontal_alignment = 1
+script = ExtResource("3_58jem")
 
 [node name="Expansion2" type="Control" parent="VBoxContainer"]
 layout_mode = 2

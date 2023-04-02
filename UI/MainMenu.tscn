@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dknx4tt6k37ia"]
+[gd_scene load_steps=3 format=3 uid="uid://dknx4tt6k37ia"]
 
 [ext_resource type="Script" path="res://UI/MainMenu.gd" id="1_idrly"]
+[ext_resource type="Script" path="res://UI/BestTimeMainMenu.gd" id="2_u11qi"]
 
 [node name="MainMenu" type="MarginContainer"]
 offset_right = 1920.0
@@ -68,12 +69,13 @@ size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 75
 text = " Play "
 
-[node name="Label7" type="Label" parent="VBoxContainer"]
+[node name="BestTimeMainMenu" type="Label" parent="VBoxContainer"]
 visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 35
 text = "Best time: 00:00:00"
 horizontal_alignment = 1
+script = ExtResource("2_u11qi")
 
 [node name="QuitGame" type="Button" parent="VBoxContainer"]
 layout_mode = 2
